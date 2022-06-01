@@ -3,7 +3,6 @@
 // AddColorCode.rc ‚ÅŽg—p
 //
 #define IDC_COLOR_CODE                  174
-#define IDC_EDIT1                       1000
 
 // Next default values for new objects
 // 

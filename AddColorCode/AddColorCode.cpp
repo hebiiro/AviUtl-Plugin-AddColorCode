@@ -17,6 +17,9 @@ HINSTANCE g_instance = 0;
 HWND g_hdlg = 0;
 
 BOOL* ColorDialog_CanHandleCommand = 0;
+int* ColorDialog_R = 0;
+int* ColorDialog_G = 0;
+int* ColorDialog_B = 0;
 
 //--------------------------------------------------------------------
 
@@ -31,6 +34,9 @@ void initHook()
 	if (!exedit) return;
 
 	castAddress(ColorDialog_CanHandleCommand, exedit + 0x134E64);
+	castAddress(ColorDialog_R, exedit + 0x11F2D0);
+	castAddress(ColorDialog_G, exedit + 0x11F0AC);
+	castAddress(ColorDialog_B, exedit + 0x11F064);
 
 	castAddress(true_ColorDialog_SetColor, exedit + 0x22420);
 	castAddress(true_ColorDialog_UpdateColorCircle, exedit + 0x21300);
@@ -101,15 +107,44 @@ IMPLEMENT_HOOK_PROC_NULL(INT_PTR, CALLBACK, ColorDialogProc, (HWND hdlg, UINT me
 
 			if (code == EN_UPDATE && id == IDC_COLOR_CODE && *ColorDialog_CanHandleCommand)
 			{
+				// エディットボックスのテキストを取得する。
 				TCHAR text[MAX_PATH] = {};
 				::GetDlgItemText(hdlg, IDC_COLOR_CODE, text, MAX_PATH);
 				MY_TRACE_TSTR(text);
-				DWORD color = _tcstoul(text, 0, 16);
-				MY_TRACE_HEX(color);
-				int r = (color >> 16) & 0xff;
-				int g = (color >>  8) & 0xff;
-				int b = (color >>  0) & 0xff;
 
+				// テキスト内の数値開始位置へのオフセットを取得する。
+				int offset = 0;
+				if (text[0] == _T('#')) offset = 1;
+
+				// テキストを数値に変換する。
+				DWORD color = _tcstoul(text + offset, 0, 16);
+				MY_TRACE_HEX(color);
+
+				int r, g, b;
+
+				if (::lstrlen(text + offset) > 3)
+				{
+					// rrggbb の形式の RGB を取得する。
+					r = (color >> 16) & 0xff;
+					g = (color >>  8) & 0xff;
+					b = (color >>  0) & 0xff;
+				}
+				else
+				{
+					// rgb の形式の RGB を取得する。
+					r = (color >> 8) & 0x0f;
+					g = (color >> 4) & 0x0f;
+					b = (color >> 0) & 0x0f;
+
+					r |= r << 4;
+					g |= g << 4;
+					b |= b << 4;
+				}
+				MY_TRACE(_T("%d, %d, %d\n"), r, g, b);
+
+				*ColorDialog_R = r;
+				*ColorDialog_G = g;
+				*ColorDialog_B = b;
 				true_ColorDialog_SetColor(r, g, b);
 				true_ColorDialog_UpdateColorCircle(hdlg);
 				true_ColorDialog_UpdateControls(hdlg, r, g, b);
