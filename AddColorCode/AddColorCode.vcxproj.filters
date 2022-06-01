@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="AddColorCode.h" />
+    <ClInclude Include="..\..\Common\AviUtlInternal.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Tracer.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Common\Hook.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_plugin_sdk\filter.h">
+      <Filter>AviUtl\aviutl_plugin_sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\AviFileHandle.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\aviutl_window_info_t.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\Color.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\ColorPlugin.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\ColorProcInfo.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\EditHandle.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\Exfunc.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\FileInfo.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\filter.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\FilterPlugin.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\FilterProcInfo.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\flag.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\FrameStatus.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\input.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\InputHandle.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\InputInfo.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\InputPlugin.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\LangResources.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\MultiThreadFunc.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\output.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\OutputInfo.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\OutputPlugin.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\pixel.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\SysInfo.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\aviutl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\BackupFileHandler.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\exedit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\cache.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\exedit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\CameraZbuffer.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\exedit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\CommandId.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\exedit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\exdata.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\exedit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\Exfunc.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\exedit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\exo.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\exedit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\Filter.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\exedit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\FilterProcInfo.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\exedit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\layer.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\exedit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\Object.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\exedit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\ObjectFilterIndex.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\exedit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\output_rgba.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\exedit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\pixel.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\exedit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\save.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\exedit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\scene.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\exedit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\structs.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\exedit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\SubFilterProcInfo.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\exedit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\susie.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\exedit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\undo.hpp">
+      <Filter>AviUtl\aviutl_exedit_sdk\exedit</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="AddColorCode.cpp" />
+    <ClCompile Include="AddColorCode_Filter.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AddColorCode.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Common">
+      <UniqueIdentifier>{177f322b-85e3-40d8-98e7-bca29a16eb22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AviUtl">
+      <UniqueIdentifier>{ccbdac2b-65c9-4684-a044-c5fe957b3192}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AviUtl\aviutl_plugin_sdk">
+      <UniqueIdentifier>{a1238836-0150-43ea-bd93-0c03be34c4f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AviUtl\aviutl_exedit_sdk">
+      <UniqueIdentifier>{b98f1d9a-6111-4c06-817a-b1032afe5acb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AviUtl\aviutl_exedit_sdk\aviutl">
+      <UniqueIdentifier>{9b2744e4-89cd-43ee-af81-3cd65fe2b794}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AviUtl\aviutl_exedit_sdk\exedit">
+      <UniqueIdentifier>{ae9e66b6-7641-4bed-b8cd-f06a27ad4ba9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AddColorCode.rc" />
+  </ItemGroup>
+</Project>

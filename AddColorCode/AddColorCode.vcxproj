@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{772bc0b9-7ca2-4ef5-9439-91d4f823156e}</ProjectGuid>
+    <RootNamespace>AddColorCode</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Common.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Common.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Common.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Common.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>../../;../../AviUtl/aviutl_exedit_sdk/</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>../../</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy /B /Y "$(TargetDir)$(TargetFileName)" "C:\AviUtl110_test\Plugins\$(TargetName).auf"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>../../;../../AviUtl/aviutl_exedit_sdk/</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>../../</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy /B /Y "$(TargetDir)$(TargetFileName)" "C:\AviUtl110_test\Plugins\$(TargetName).auf"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>../../;../../AviUtl/aviutl_exedit_sdk/</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>../../</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy /B /Y "$(TargetDir)$(TargetFileName)" "C:\AviUtl110_test\Plugins\$(TargetName).auf"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>../../;../../AviUtl/aviutl_exedit_sdk/</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      <AdditionalLibraryDirectories>../../</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy /B /Y "$(TargetDir)$(TargetFileName)" "C:\AviUtl110_test\Plugins\$(TargetName).auf"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\AviFileHandle.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\aviutl_window_info_t.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\Color.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\ColorPlugin.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\ColorProcInfo.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\EditHandle.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\Exfunc.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\FileInfo.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\filter.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\FilterPlugin.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\FilterProcInfo.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\flag.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\FrameStatus.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\input.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\InputHandle.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\InputInfo.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\InputPlugin.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\LangResources.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\MultiThreadFunc.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\output.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\OutputInfo.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\OutputPlugin.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\pixel.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\aviutl\SysInfo.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\BackupFileHandler.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\cache.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\CameraZbuffer.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\CommandId.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\exdata.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\Exfunc.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\exo.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\Filter.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\FilterProcInfo.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\layer.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\Object.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\ObjectFilterIndex.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\output_rgba.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\pixel.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\save.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\scene.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\structs.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\SubFilterProcInfo.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\susie.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_exedit_sdk\exedit\undo.hpp" />
+    <ClInclude Include="..\..\AviUtl\aviutl_plugin_sdk\filter.h" />
+    <ClInclude Include="..\..\Common\AviUtlInternal.h" />
+    <ClInclude Include="..\..\Common\Hook.h" />
+    <ClInclude Include="..\..\Common\Tracer.h" />
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="AddColorCode.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AddColorCode.cpp" />
+    <ClCompile Include="AddColorCode_Filter.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AddColorCode.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AddColorCode.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
