@@ -7,7 +7,7 @@
 EXTERN_C __declspec(dllexport) FILTER_DLL* CALLBACK GetFilterTable(void)
 {
 	static TCHAR filterName[] = TEXT("カラーコード追加");
-	static TCHAR filterInformation[] = TEXT("カラーコード追加 1.0.0 by 蛇色");
+	static TCHAR filterInformation[] = TEXT("カラーコード追加 1.1.0 by 蛇色");
 
 	static FILTER_DLL filter =
 	{
