@@ -18,6 +18,7 @@
 #include "AviUtl/aviutl_plugin_sdk/filter.h"
 #include "AviUtl/aviutl_exedit_sdk/exedit.hpp"
 #include "Common/Tracer.h"
+#include "Common/WinUtility.h"
 #include "Common/Hook.h"
 #include "Common/AviUtlInternal.h"
 #include "Detours.4.0.1/detours.h"

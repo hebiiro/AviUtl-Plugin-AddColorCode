@@ -2,7 +2,7 @@
 #include "AddColorCode.h"
 #include "resource.h"
 
-//---------------------------------------------------------------------
+//--------------------------------------------------------------------
 
 // デバッグ用コールバック関数。デバッグメッセージを出力する
 void ___outputLog(LPCTSTR text, LPCTSTR output)
@@ -10,11 +10,12 @@ void ___outputLog(LPCTSTR text, LPCTSTR output)
 	::OutputDebugString(output);
 }
 
-//---------------------------------------------------------------------
+//--------------------------------------------------------------------
 
 AviUtlInternal g_auin;
 HINSTANCE g_instance = 0;
 HWND g_hdlg = 0;
+POINT g_offset = { 0, 0 };
 
 BOOL* ColorDialog_CanHandleCommand = 0;
 int* ColorDialog_R = 0;
@@ -23,6 +24,23 @@ int* ColorDialog_B = 0;
 
 //--------------------------------------------------------------------
 
+// ini ファイルから設定を読み込む。
+void loadProfile()
+{
+	MY_TRACE(_T("loadProfile()\n"));
+
+	TCHAR path[MAX_PATH];
+	::GetModuleFileName(g_instance, path, MAX_PATH);
+	::PathRenameExtension(path, _T(".ini"));
+	MY_TRACE_TSTR(path);
+
+	g_offset.x = ::GetPrivateProfileInt(_T("Settings"), _T("offset.x"), g_offset.x, path);
+	g_offset.y = ::GetPrivateProfileInt(_T("Settings"), _T("offset.y"), g_offset.y, path);
+
+	MY_TRACE_INT(g_offset.x);
+	MY_TRACE_INT(g_offset.y);
+}
+
 // フックをセットする。
 void initHook()
 {
@@ -30,8 +48,12 @@ void initHook()
 
 	g_auin.initExEditAddress();
 
-	DWORD exedit = g_auin.GetExedit();
+	DWORD exedit = g_auin.GetExEdit();
 	if (!exedit) return;
+
+	true_SetDIBitsToDevice = hookImportFunc(
+		(HMODULE)exedit, "SetDIBitsToDevice", hook_SetDIBitsToDevice);
+	MY_TRACE_HEX(true_SetDIBitsToDevice);
 
 	castAddress(ColorDialog_CanHandleCommand, exedit + 0x134E64);
 	castAddress(ColorDialog_R, exedit + 0x11F2D0);
@@ -83,6 +105,22 @@ void updateColorCode(int r, int g, int b)
 }
 
 //--------------------------------------------------------------------
+
+IMPLEMENT_HOOK_PROC_NULL(int, WINAPI, SetDIBitsToDevice, (
+    _In_ HDC hdc, _In_ int xDest, _In_ int yDest, _In_ DWORD w, _In_ DWORD h, _In_ int xSrc,
+    _In_ int ySrc, _In_ UINT StartScan, _In_ UINT cLines, _In_ CONST VOID * lpvBits, _In_ CONST BITMAPINFO * lpbmi, _In_ UINT ColorUse))
+{
+	MY_TRACE(_T("SetDIBitsToDevice(%d, %d) 変更前\n"), xDest, yDest);
+
+	// 描画位置をオフセットの分だけずらす。
+
+	xDest += g_offset.x;
+	yDest += g_offset.y;
+
+	MY_TRACE(_T("SetDIBitsToDevice(%d, %d) 変更後\n"), xDest, yDest);
+
+	return true_SetDIBitsToDevice(hdc, xDest, yDest, w, h, xSrc, ySrc, StartScan, cLines, lpvBits, lpbmi, ColorUse);
+}
 
 IMPLEMENT_HOOK_PROC_NULL(INT_PTR, CALLBACK, ColorDialogProc, (HWND hdlg, UINT message, WPARAM wParam, LPARAM lParam))
 {
@@ -149,6 +187,19 @@ IMPLEMENT_HOOK_PROC_NULL(INT_PTR, CALLBACK, ColorDialogProc, (HWND hdlg, UINT me
 				true_ColorDialog_UpdateColorCircle(hdlg);
 				true_ColorDialog_UpdateControls(hdlg, r, g, b);
 			}
+
+			break;
+		}
+	case WM_LBUTTONDOWN:
+	case WM_LBUTTONUP:
+	case WM_MOUSEMOVE:
+		{
+			// マウス位置をオフセットの分だけずらす。
+
+			POINT point = LP2PT(lParam);
+			point.x -= g_offset.x;
+			point.y -= g_offset.y;
+			lParam = PT2LP(point);
 
 			break;
 		}

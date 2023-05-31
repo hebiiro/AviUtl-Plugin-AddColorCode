@@ -1,22 +1,21 @@
 ﻿#include "pch.h"
 #include "AddColorCode.h"
 
-//---------------------------------------------------------------------
+//--------------------------------------------------------------------
 //		フィルタ構造体のポインタを渡す関数
-//---------------------------------------------------------------------
-EXTERN_C __declspec(dllexport) FILTER_DLL* CALLBACK GetFilterTable(void)
+//--------------------------------------------------------------------
+EXTERN_C FILTER_DLL* WINAPI GetFilterTable()
 {
 	static TCHAR filterName[] = TEXT("カラーコード追加");
-	static TCHAR filterInformation[] = TEXT("カラーコード追加 1.1.0 by 蛇色");
+	static TCHAR filterInformation[] = TEXT("カラーコード追加 1.2.0 by 蛇色");
 
 	static FILTER_DLL filter =
 	{
 		FILTER_FLAG_NO_CONFIG |
 		FILTER_FLAG_ALWAYS_ACTIVE |
-		FILTER_FLAG_WINDOW_SIZE |
 		FILTER_FLAG_DISP_FILTER |
 		FILTER_FLAG_EX_INFORMATION,
-		400, 400,
+		0, 0,
 		filterName,
 		NULL, NULL, NULL,
 		NULL, NULL,
@@ -38,22 +37,23 @@ EXTERN_C __declspec(dllexport) FILTER_DLL* CALLBACK GetFilterTable(void)
 	return &filter;
 }
 
-//---------------------------------------------------------------------
+//--------------------------------------------------------------------
 //		初期化
-//---------------------------------------------------------------------
+//--------------------------------------------------------------------
 
 BOOL func_init(FILTER *fp)
 {
 	MY_TRACE(_T("func_init()\n"));
 
+	loadProfile();
 	initHook();
 
 	return TRUE;
 }
 
-//---------------------------------------------------------------------
+//--------------------------------------------------------------------
 //		終了
-//---------------------------------------------------------------------
+//--------------------------------------------------------------------
 BOOL func_exit(FILTER *fp)
 {
 	MY_TRACE(_T("func_exit()\n"));
