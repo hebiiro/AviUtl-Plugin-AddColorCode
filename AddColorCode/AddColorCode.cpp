@@ -65,6 +65,11 @@ void initHook()
 	castAddress(true_ColorDialog_UpdateControls, exedit + 0x216A0);
 
 	true_ShowColorDialog = hookCall(exedit + 0x4D386, hook_ShowColorDialog);
+	MY_TRACE_HEX(true_ShowColorDialog);
+
+	// スポイト処理の ::GetPixel() をフックする。
+	true_Dropper_GetPixel = hookAbsoluteCall(exedit + 0x22128, hook_Dropper_GetPixel);
+	MY_TRACE_HEX(true_Dropper_GetPixel);
 
 	DetourTransactionBegin();
 	DetourUpdateThread(::GetCurrentThread());
@@ -107,8 +112,8 @@ void updateColorCode(int r, int g, int b)
 //--------------------------------------------------------------------
 
 IMPLEMENT_HOOK_PROC_NULL(int, WINAPI, SetDIBitsToDevice, (
-    _In_ HDC hdc, _In_ int xDest, _In_ int yDest, _In_ DWORD w, _In_ DWORD h, _In_ int xSrc,
-    _In_ int ySrc, _In_ UINT StartScan, _In_ UINT cLines, _In_ CONST VOID * lpvBits, _In_ CONST BITMAPINFO * lpbmi, _In_ UINT ColorUse))
+	_In_ HDC hdc, _In_ int xDest, _In_ int yDest, _In_ DWORD w, _In_ DWORD h, _In_ int xSrc, _In_ int ySrc,
+	_In_ UINT StartScan, _In_ UINT cLines, _In_ CONST VOID * lpvBits, _In_ CONST BITMAPINFO * lpbmi, _In_ UINT ColorUse))
 {
 	MY_TRACE(_T("SetDIBitsToDevice(%d, %d) 変更前\n"), xDest, yDest);
 
@@ -246,6 +251,21 @@ IMPLEMENT_HOOK_PROC_NULL(void, CDECL, ColorDialog_UpdateControls, (HWND hdlg, in
 	true_ColorDialog_UpdateControls(hdlg, r, g, b);
 
 	updateColorCode(r, g, b);
+}
+
+IMPLEMENT_HOOK_PROC_NULL(COLORREF, WINAPI, Dropper_GetPixel, (HDC _dc, int x, int y))
+{
+	MY_TRACE(_T("Dropper_GetPixel(0x%08X, %d, %d)\n"), _dc, x, y);
+
+	// すべてのモニタのすべての場所から色を抽出できるようにする。
+
+	HWND hwnd = 0;
+	POINT point; ::GetCursorPos(&point);
+	::LogicalToPhysicalPointForPerMonitorDPI(hwnd, &point);
+	HDC dc = ::GetDC(hwnd);
+	COLORREF color = ::GetPixel(dc, point.x, point.y);
+	::ReleaseDC(hwnd, dc);
+	return color;
 }
 
 //--------------------------------------------------------------------

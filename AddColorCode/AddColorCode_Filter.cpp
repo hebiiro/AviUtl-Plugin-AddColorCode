@@ -7,7 +7,7 @@
 EXTERN_C FILTER_DLL* WINAPI GetFilterTable()
 {
 	static TCHAR filterName[] = TEXT("カラーコード追加");
-	static TCHAR filterInformation[] = TEXT("カラーコード追加 1.2.0 by 蛇色");
+	static TCHAR filterInformation[] = TEXT("カラーコード追加 1.2.1 by 蛇色");
 
 	static FILTER_DLL filter =
 	{
